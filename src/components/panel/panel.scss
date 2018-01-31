@@ -30,8 +30,7 @@
 
 @include breakpoint {
   .panel {
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     text-align: center;
   }
 
