@@ -1,0 +1,10 @@
+@import '~styles/variables';
+
+.footer {
+  text-align: center;
+  padding: $spacing 0;
+
+  .no-link {
+    color: $color-white;
+  }
+}
