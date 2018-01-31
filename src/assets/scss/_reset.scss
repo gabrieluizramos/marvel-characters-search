@@ -1,0 +1,35 @@
+@charset 'utf-8';
+
+@import '~styles/variables';
+
+html,
+body,
+#app,
+.main {
+  min-height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  list-style: none;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  z-index: 0;
+  font-family: 'Trebuchet MS', arial;
+  outline: none;
+  transition: .2s ease-in-out;
+}
+
+html {
+  color: $color-white;
+  background: linear-gradient(155deg, $color-main, $color-black);
+}
+
+.main {
+  width: 95%;
+  max-width: 600px;
+  margin: 0 auto;
+}

@@ -1,0 +1,12 @@
+@import '~styles/variables';
+
+a {
+  &:not(.no-link) {
+    color: $color-variant;
+  }
+}
+
+.no-link {
+  color: #FFF;
+  text-decoration: none;
+}
