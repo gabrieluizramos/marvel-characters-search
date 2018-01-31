@@ -1,4 +1,5 @@
 {
+  "port": 8080,
   "api": {
     "key": "cd2cff6303701b9908009bc03836a63b",
     "protocol": "https://",
