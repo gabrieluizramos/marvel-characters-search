@@ -11,3 +11,6 @@ To run project on livereload
 ```sh
 yarn start
 ```
+
+## Unfinished tasks
+- [ ] Components unit tests
