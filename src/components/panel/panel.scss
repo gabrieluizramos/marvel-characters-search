@@ -1,0 +1,41 @@
+@import '~styles/variables';
+@import '~styles/mixins';
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: $spacing auto;
+}
+
+.panel-figure {
+  width: 200px;
+
+  .panel-img {
+    width: 100%;
+  }
+}
+
+.panel-description {
+  width: calc(100% - 200px);
+  padding: $spacing;
+}
+
+.panel-title {
+  font-size: $font-size-big;
+  margin-bottom: $spacing;
+  display: block;
+}
+
+
+@include breakpoint {
+  .panel {
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .panel-description {
+    width: 100%;
+  }
+}
