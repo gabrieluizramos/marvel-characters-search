@@ -1,0 +1,45 @@
+@import '~styles/variables';
+@import '~styles/mixins';
+
+.searchbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing;
+  height: $field-size;
+}
+
+.input {
+  padding: $spacing;
+  flex: 2;
+  height: 100%;
+  font-size: $font-size-big;
+  color: $color-marvel;
+}
+
+.button {
+  flex: 1;
+  height: 100%;
+  background: $color-marvel;
+  color: $color-white;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: $font-size-default;
+}
+
+
+@include breakpoint {
+  .searchbar {
+    flex-flow: column wrap;
+    height: auto;
+  }
+
+  .button,
+  .input {
+    width: 100%;
+    flex: auto;
+    height: $field-size;
+  }
+}
