@@ -1,0 +1,10 @@
+{
+  "api": {
+    "key": "cd2cff6303701b9908009bc03836a63b",
+    "protocol": "https://",
+    "domain": "gateway.marvel.com:443/v1/public",
+    "endpoints": {
+      "characters": "/characters"
+    }
+  }
+}
