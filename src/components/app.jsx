@@ -15,25 +15,25 @@ class App extends Component {
     super();
     this.state = {
       search: null,
-      hero: null
+      heroes: []
     };
 
     // API
     const { api: { key, protocol, domain, endpoints: { characters } } } = app;
-    const fetchHeroURL = `${protocol}${domain}${characters}?name=:search&apikey=${key}`;
-    this.fetchHeroURL = fetchHeroURL;
+    const fetchHeroesURL = `${protocol}${domain}${characters}?nameStartsWith=:search&apikey=${key}`;
+    this.fetchHeroesURL = fetchHeroesURL;
 
     // Binds
-    this.searchHero = this.searchHero.bind(this);
-    this.fetchHero = this.fetchHero.bind(this);
-    this.setHero = this.setHero.bind(this);
-    this.hasHero = this.hasHero.bind(this);
+    this.searchHeroes = this.searchHeroes.bind(this);
+    this.fetchHeroes = this.fetchHeroes.bind(this);
+    this.setHeroes = this.setHeroes.bind(this);
+    this.hasHeroes = this.hasHeroes.bind(this);
   }
 
   componentWillMount() {
     const heroName = this.getSearchParam();
     if (heroName) {
-      this.searchHero(heroName);
+      this.searchHeroes(heroName);
     }
   }
 
@@ -41,33 +41,30 @@ class App extends Component {
     return window.location.search.replace('?search=', '');
   }
 
-  setHero({ name, description, thumbnail: { path, extension } }) {
-    const hero = {
-      name,
-      description,
-      image: `${path}.${extension}`
-    };
+  setHeroes(heroesArray) {
+    const heroes = heroesArray.map((hero) => {
+      const { name, description, thumbnail: { path, extension } } = hero;
+      return ({ name, description, image: `${path}.${extension}` });
+    });
 
     this.setState({
-      hero
+      heroes
     });
   }
 
-  fetchHero() {
-    const fetchHeroURL = this.fetchHeroURL.replace(':search', this.state.search);
-    fetch(fetchHeroURL).then(data => data.json()).then(heroData => heroData.data.results[0]).then(this.setHero);
+  fetchHeroes() {
+    const fetchHeroesURL = this.fetchHeroesURL.replace(':search', this.state.search);
+    fetch(fetchHeroesURL).then(data => data.json()).then(heroData => heroData.data.results).then(this.setHeroes);
   }
 
-  searchHero(search) {
+  searchHeroes(search) {
     this.setState({
       search
-    }, this.fetchHero);
+    }, this.fetchHeroes);
   }
 
-  hasHero() {
-    return this.state.search &&
-    this.state.hero &&
-    this.state.hero.name;
+  hasHeroes() {
+    return this.state.search && this.state.heroes.length;
   }
 
   render() {
@@ -77,12 +74,15 @@ class App extends Component {
         <main className="main wrapper">
           <SearchBar />
           {
-            this.hasHero() &&
-            <Panel
-              name={this.state.hero.name}
-              description={this.state.hero.description}
-              image={this.state.hero.image}
-            />
+            this.hasHeroes() ?
+            this.state.heroes.map(hero => (
+              <Panel
+                key={hero.id}
+                name={hero.name}
+                description={hero.description}
+                image={hero.image}
+              />
+            )) : <p>No heroes matching your search</p>
           }
         </main>
         <Footer />

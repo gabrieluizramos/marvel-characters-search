@@ -6,6 +6,11 @@
   align-items: center;
   justify-content: center;
   margin: $spacing auto;
+  border-bottom: 1px solid $color-white;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
 }
 
 .panel-figure {
